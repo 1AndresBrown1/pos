@@ -69,8 +69,87 @@
                 </div>
             </div>
         </div>
-
     </div>
+    
+    
+    <br/>
+<h3 class="ms-3">Total ventas:
+<?php
+// Establecer la conexión a la base de datos
+$conexion = new mysqli("localhost", "root", "", "");
+
+// Verificar la conexión
+if ($conexion->connect_error) {
+    die("Error en la conexión: " . $conexion->connect_error);
+}
+
+// Ejecutar la consulta SQL para obtener la suma de las ventas por año
+$sql = "SELECT DATE_FORMAT(fecha, '%Y') AS ano, SUM(pago) AS total
+        FROM ventas
+        GROUP BY DATE_FORMAT(fecha, '%Y')";
+$resultado = $conexion->query($sql);
+
+// Verificar si se obtuvieron resultados
+if ($resultado->num_rows > 0) {
+    // Iterar sobre los resultados y mostrar el total de ventas por año
+    while ($fila = $resultado->fetch_assoc()) {
+        // Formatear el resultado en pesos colombianos
+        $total_pesos = number_format($fila['total'], 0, ',', '.'); 
+
+        // Mostrar el resultado
+        echo '' . $fila['ano'] . ': <span style="color: white; background-color: #3730a3;" class="badge rounded-pill text-bg-primary">' . $total_pesos . ' COP</span>';
+    }
+} else {
+    echo "No se encontraron resultados.";
+}
+
+// Cerrar la conexión
+$conexion->close();
+?> </h3>
+
+
+
+
+
+<h3 class="ms-3">Total ventas mes actual<?php
+// Establecer la conexión a la base de datos
+$conexion = new mysqli("localhost", "root", "", "");
+
+// Verificar la conexión
+if ($conexion->connect_error) {
+    die("Error en la conexión: " . $conexion->connect_error);
+}
+
+// Obtener el mes actual
+$mes_actual = date('m');
+
+// Ejecutar la consulta SQL para obtener el valor ganado por mes
+$sql = "SELECT MONTH(fecha) AS mes, SUM(pago) AS total_mes
+        FROM ventas
+        WHERE MONTH(fecha) = $mes_actual
+        GROUP BY MONTH(fecha)";
+$resultado = $conexion->query($sql);
+
+// Verificar si se obtuvieron resultados
+if ($resultado->num_rows > 0) {
+    // Iterar sobre los resultados y mostrar el valor total ganado por mes
+    while ($fila = $resultado->fetch_assoc()) {
+        // Obtener el nombre del mes
+        $nombre_mes = date('F', mktime(0, 0, 0, $fila['mes'], 1));
+        
+        // Mostrar el valor total ganado por mes dentro de un span
+        echo ": $nombre_mes: <span style='color: white; background-color: #3730a3;' class='badge rounded-pill text-bg-primary'>" . number_format($fila['total_mes'], 0, ',', '.') . " COP</span><br>";
+    }
+} else {
+    echo "No se encontraron resultados para el mes actual.";
+}
+
+// Cerrar la conexión
+$conexion->close();
+?></h3>
+    <br/>
+
+
 
     <div class="card custom-card-table radius-10">
         <div class="card-body">
