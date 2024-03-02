@@ -6,8 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
-    <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/logo.png" type="image/x-icon">
-
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo BASE_URL; ?>assets/images/logosantandervalleycol.png">
     <!--plugins-->
     <link href="<?php echo BASE_URL; ?>assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
     <link href="<?php echo BASE_URL; ?>assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
@@ -20,127 +19,65 @@
     <link href="<?php echo BASE_URL; ?>assets/css/bootstrap-extended.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link href="<?php echo BASE_URL; ?>assets/css/app.css" rel="stylesheet">
-    <link href="<?php echo BASE_URL; ?>assets/css/login.css" rel="stylesheet">
-
     <link href="<?php echo BASE_URL; ?>assets/css/icons.css" rel="stylesheet">
     <title><?php echo TITLE . ' - ' . $data['title']; ?></title>
 </head>
 
 <body class="bg-login">
-
-
-    <!-- Modal -->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>Periodo de prueba terminado</p>
-        </div>
-    </div>
-
-    <!-- Resto de tu contenido -->
-
-    <!-- Agrega tus scripts JavaScript aquí -->
-    <script>
-        // Obtén referencias a los elementos del modal
-        const modal = document.getElementById("myModal");
-        const closeButton = document.getElementsByClassName("close")[0];
-
-        // Función para mostrar el modal
-        function mostrarModal() {
-            modal.style.display = "block";
-        }
-
-        // Función para cerrar el modal
-        function cerrarModal() {
-            modal.style.display = "none";
-        }
-
-        // Evento para cerrar el modal al hacer clic en el botón de cierre
-        closeButton.addEventListener("click", cerrarModal);
-
-        // Mostrar el modal después de 1 día (86400 segundos)
-        setTimeout(mostrarModal, 8 * 1); // 1 día en milisegundos
-    </script>
-
-    <!-- Code new -->
-    <main>
-        <div class="box">
-            <div class="inner-box">
-                <div class="forms-wrap">
-                    <form method="POST" autocomplete="off" id="formulario" class="sign-in-form">
-                        <div class="logo">
-                            <div>
-                                <img  src="<?php echo BASE_URL; ?>assets/images/logo.png" class="logo-icon" alt="logo icon">
-                            </div>
-                            <div>
-                                <h5 style="color:black; font-size: 23px; line-height: 21px;" class="logo-text">Sistema de <br> <strong> Ventas </strong></h5>
-                            </div>
+    <!--wrapper-->
+    <div class="wrapper">
+        <div class="section-authentication-signin d-flex align-items-center justify-content-center my-5 my-lg-0">
+            <div class="container-fluid">
+                <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
+                    <div class="col mx-auto">
+                        <div class="mb-4 text-center">
+                            <img src="<?php echo BASE_URL; ?>assets/images/logo.png" width="180" alt="" />
                         </div>
-
-                        <div class="heading">
-                            <h2 style="line-height: 29px;">Bienvenid@ de nuevo.</h2>
-
-                        </div>
-
-                        <div class="actual-form">
-                            <div class="input-wrap">
-                                <input name="correo" id="correo" type="email" minlength="4" class="input-field" autocomplete="off" required />
-                                <label for="correo">Correo electrocico</label>
-                                <span id="errorCorreo" class="text-danger"></span>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="border p-4 rounded">
+                                    <div class="text-center">
+                                        <h3 class="">Iniciar Sesión</h3>
+                                    </div>
+                                    <div class="login-separater text-center mb-4"> <span>OR SIGN IN WITH EMAIL</span>
+                                        <hr />
+                                    </div>
+                                    <div class="form-body">
+                                        <form class="row g-3" id="formulario" method="POST" autocomplete="off">
+                                            <div class="col-12">
+                                                <label for="correo" class="form-label">Correo Electrónico</label>
+                                                <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo Electrónico">
+                                                <span id="errorCorreo" class="text-danger"></span>
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="clave" class="form-label">Contraseña</label>
+                                                <div class="input-group" id="show_hide_password">
+                                                    <input type="password" class="form-control border-end-0" id="clave" name="clave" placeholder="Contraseña">
+                                                    <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
+                                                </div>
+                                                <span id="errorClave" class="text-danger"></span>
+                                            </div>
+                                            <!--<div class="col-md-12 text-end"> <a href="<?php echo BASE_URL . 'principal/forgot'; ?>">Olvidaste tu contraseña?</a>-->
+                                            <!--</div>-->
+                                            <div class="col-12">
+                                                <div class="d-grid">
+                                                    <button type="submit" class="btn btn-primary"><i class="bx bxs-lock-open"></i>Acceso</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-
-                            <div class="input-wrap">
-                                <input id="clave" name="clave" type="password" minlength="4" class="input-field" autocomplete="off" required />
-                                <label for="clave">Password</label>
-                                <span id="errorClave" class="text-danger"></span>
-                            </div>
-
-                            <input type="submit" class="sign-btn" />
-
-                            <p class="text">
-                                Forgotten your password or you login datails?
-                                <a href="<?php echo BASE_URL . 'principal/forgot'; ?>">Get help</a> signing in
-                            </p>
-                        </div>
-                    </form>
-
-
-                </div>
-
-                <div class="carousel">
-                    <div class="images-wrapper">
-                        <img src="#" class="image img-1 show" alt="" />
-                        <img src="#" class="image img-2" alt="" />
-                        <img src="#" class="image img-3" alt="" />
-                    </div>
-
-                    <div class="text-slider">
-                        <div class="text-wrap">
-                            <div class="text-group">
-                                <h2>¡Gestiona tu negocio!</h2>
-                                <h2>¡Vende en linea!</h2>
-                                <h2>¡Toma el control!</h2>
-                            </div>
-                        </div>
-
-                        <div class="bullets">
-                            <span class="active" data-value="1"></span>
-                            <span data-value="2"></span>
-                            <span data-value="3"></span>
                         </div>
                     </div>
                 </div>
+                <!--end row-->
             </div>
         </div>
-    </main>
-    <!-- Code new -->
-
-
+    </div>
     <!--end wrapper-->
     <!-- Bootstrap JS -->
     <script src="<?php echo BASE_URL; ?>assets/js/bootstrap.bundle.min.js"></script>
-    <script src="<?php echo BASE_URL; ?>assets/js/loginnew.js"></script>
-
     <!--plugins-->
     <script src="<?php echo BASE_URL; ?>assets/js/jquery.min.js"></script>
     <script src="<?php echo BASE_URL; ?>assets/plugins/simplebar/js/simplebar.min.js"></script>
@@ -164,7 +101,6 @@
         });
     </script>
     <!--app JS-->
-
     <script src="<?php echo BASE_URL; ?>assets/js/app.js"></script>
     <script src="<?php echo BASE_URL; ?>assets/js/sweetalert2.all.min.js"></script>
     <script>
