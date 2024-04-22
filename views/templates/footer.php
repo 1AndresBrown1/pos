@@ -10,13 +10,21 @@
 <!--End Back To Top Button-->
 <footer class="page-footer">
     <!-- <p class="mb-0">Desarrollado por <a style="color: orangered" href="https://santandervalleycol.com/">Santander Valley Col. © </a><?php echo date('Y'); ?></p> -->
+    <button id="chatBtn" class="btn btn-primary"><i class="fas fa-comment"></i></button>
+    <style>
+        /* styles.css */
+        #chatBtn {
+            position: fixed;
+            bottom: 12px;
+            right: 20px;
+            z-index: 200;
+        }
+    </style>
 
     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
         <a href="<?php echo BASE_URL . 'ventas'; ?>" class="btn btn-outline-primary me-md-2 custombtn" type="button">Nueva venta</a>
-        <a href="<?php echo BASE_URL . 'cajas'; ?>" class="btn btn-success custombtn2" type="button">Ir a caja</a>
+        <a href="<?php echo BASE_URL . 'cajas'; ?>" class="btn btn-success custombtn2 fw-bolder" type="button">Ir a caja</a>
     </div>
-
-
 </footer>
 </div>
 <!--end wrapper-->
@@ -116,6 +124,10 @@
     </div>
 </div> -->
 <!--end switcher -->
+
+
+
+
 <!-- Bootstrap JS -->
 <script src="<?php echo BASE_URL; ?>assets/js/bootstrap.bundle.min.js"></script>
 <!--plugins-->
@@ -148,6 +160,75 @@
 <?php if (!empty($data['script'])) { ?>
     <script src="<?php echo BASE_URL . 'assets/js/modulos/' . $data['script']; ?>"></script>
 <?php } ?>
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Modal</title>
+    <!-- Agrega tus enlaces a CSS y scripts aquí -->
+</head>
+<body>
+
+<!-- Agrega este código al final del body de tu HTML -->
+<div class="modal fade" id="chatModal" tabindex="-1" aria-labelledby="chatModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="chatModalLabel">Mi asistente</h5>
+            </div>
+            <div class="modal-body">
+                <!-- Aquí puedes colocar el contenido de tu chat -->
+                <?php
+                $api_chatgpt = 'sk-proj-hXr66e9ndZldWGo7vcgrT3BlbkFJ9yNAoiG5JQHRxxxRhhIb';
+                $mensaje = 'Como seria el proceso para llevar al exito mi fruver';
+
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, 'https://api.openai.com/v1/chat/completions');
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+                curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                    'Content-Type: application/json',
+                    'Authorization: Bearer ' . $api_chatgpt,
+                ]);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, "{\n     \"model\": \"gpt-3.5-turbo\",\n     \"messages\": [{\"role\": \"user\", \"content\": \"$mensaje\"}],\n     \"temperature\": 0.7\n   }");
+
+                $response = curl_exec($ch);
+                curl_close($ch);
+
+                $respuesta = json_decode($response);
+                $mensaje_respuesta = $respuesta->choices[0]->message->content;
+
+                echo '<h5> Consejo dinámico: ' . $mensaje . '</h5>';
+                echo '<h5> Respuesta dinámica: </h5>';
+                echo '<p>' . $mensaje_respuesta . '</p>';
+                ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Agrega tus scripts al final del body aquí -->
+
+
+
+
+<!-- Agrega este código al final del body de tu HTML -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var chatBtn = document.getElementById("chatBtn");
+        var modal = document.getElementById("chatModal");
+
+        chatBtn.addEventListener("click", function() {
+            // Abre el modal cuando se hace clic en el botón
+            $(modal).modal("show");
+        });
+    });
+</script>
+
+
 </body>
 
 </html>

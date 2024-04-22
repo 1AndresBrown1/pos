@@ -15,13 +15,13 @@
         </div>
         <nav>
             <div class="nav nav-pills" id="nav-tab" role="tablist">
-                <button class="nav-link active" id="nav-usuarios-tab" data-bs-toggle="tab" data-bs-target="#nav-usuarios" type="button" role="tab" aria-controls="nav-usuarios" aria-selected="true">Usuarios</button>
-                <button class="nav-link" id="nav-nuevo-tab" data-bs-toggle="tab" data-bs-target="#nav-nuevo" type="button" role="tab" aria-controls="nav-nuevo" aria-selected="false">Nuevo</button>
+                <button  class="nav-link active me-2" id="nav-usuarios-tab" data-bs-toggle="tab" data-bs-target="#nav-usuarios" type="button" role="tab" aria-controls="nav-usuarios" aria-selected="true">Usuarios</button>
+                <button  class="nav-link " id="nav-nuevo-tab" data-bs-toggle="tab" data-bs-target="#nav-nuevo" type="button" role="tab" aria-controls="nav-nuevo" aria-selected="false">Nuevo</button>
             </div>
         </nav>
         <div style="margin-top: 39px;" class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active mt-2" id="nav-usuarios" role="tabpanel" aria-labelledby="nav-usuarios-tab" tabindex="0">
-                <div  class="table-responsive">
+                <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover nowrap" id="tblUsuarios" style="width: 100%;">
                         <thead>
                             <tr>
@@ -39,7 +39,7 @@
                     </table>
                 </div>
             </div>
-           
+
             <div style="margin-top: 20px;" class="tab-pane fade" id="nav-nuevo" role="tabpanel" aria-labelledby="nav-nuevo-tab" tabindex="0">
                 <form class="p-4" id="formulario" autocomplete="off">
                     <input type="hidden" id="id" name="id">

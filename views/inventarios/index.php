@@ -1,5 +1,38 @@
 <?php include_once 'views/templates/header.php'; ?>
 
+<!--  -->
+<!-- <?php
+$api_chatgpt = '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';
+$mensaje = 'Dame una frase motivadora para programadores';
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'https://api.openai.com/v1/chat/completions');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'Content-Type: application/json',
+    'Authorization: Bearer ' . $api_chatgpt,
+]);
+curl_setopt($ch, CURLOPT_POSTFIELDS, "{\n     \"model\": \"gpt-3.5-turbo\",\n     \"messages\": [{\"role\": \"user\", \"content\": \".$mensaje.\"}],\n     \"temperature\": 0.7\n   }");
+
+$response = curl_exec($ch);
+
+curl_close($ch);
+
+$respuesta = json_decode($response);
+var_dump($respuesta);
+
+
+echo '<br>';
+echo '<br>';
+echo '<h1> Mesanje: ' . $mensaje . '</h1>';
+echo '<h1> Respuesta: ' . '</h1>';
+
+
+?> -->
+
+<!--  -->
+
 <div class="card custom-card-table">
     <div class="card-body">
         <nav>
@@ -22,7 +55,7 @@
                 </div>
                 <label for="mes">Mes Inventario</label>
                 <div class="d-flex mb-2">
-                    <div class="form-group">
+                    <div class="form-group me-3">
                         <input id="mes" class="form-control" type="month">
                     </div>
                     <div>

@@ -1,14 +1,14 @@
+
 <!doctype html>
 <html lang="en">
 
 <head>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-        
-        #ultimo + div{
+
+        #ultimo+div {
             visibility: hidden;
         }
-        
     </style>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -57,7 +57,7 @@
             <ul class="metismenu" id="menu">
                 <li>
                     <a href="<?php echo BASE_URL . 'admin'; ?>">
-                        <div class="parent-icon"><i class="fa-solid fa-house"></i>
+                        <div class="parent-icon"><i class="fa-solid fa-house-user"></i>
                         </div>
                         <div class="menu-title">Tablero</div>
                     </a>
@@ -65,7 +65,7 @@
                 <?php if ($_SESSION['rol'] == 1) { ?>
                     <li>
                         <a href="javascript:;" class="has-arrow">
-                            <div class="parent-icon"><i class="fa-regular fa-address-card"></i>
+                            <div class="parent-icon"><i class="fa-solid fa-lock"></i>
                             </div>
                             <div class="menu-title">Administración</div>
                         </a>
@@ -81,7 +81,7 @@
                 <?php } ?>
                 <li>
                     <a href="javascript:;" class="has-arrow">
-                        <div class="parent-icon"><i class="fa-regular fa-pen-to-square"></i>
+                        <div class="parent-icon"><i class="fa-solid fa-folder-plus"></i>
                         </div>
                         <div class="menu-title">Mantenimiento</div>
                     </a>
@@ -98,7 +98,7 @@
                 <!--  -->
                 <li>
                     <a href="javascript:;" class="has-arrow">
-                        <div class="parent-icon"><i class="fa-regular fa-handshake"></i>
+                        <div class="parent-icon"><i class="fa-solid fa-store"></i>
                         </div>
                         <div class="menu-title">Negocio</div>
                     </a>
@@ -175,7 +175,7 @@
 
                 <li>
                     <a href="javascript:;" class="has-arrow">
-                        <div class="parent-icon"><i class="fa-regular fa-credit-card"></i>
+                        <div class="parent-icon"><i class="fa-solid fa-credit-card"></i>
                         </div>
                         <div class="menu-title">Ventas</div>
                     </a>
@@ -229,7 +229,7 @@
                 </li> -->
                 <li>
                     <a href="<?php echo BASE_URL . 'apartados'; ?>">
-                        <div class="parent-icon"><i class="fa-regular fa-window-restore"></i>
+                        <div class="parent-icon"><i class="fa-solid fa-layer-group"></i>
                         </div>
                         <div class="menu-title">Apartados</div>
                     </a>
@@ -237,7 +237,7 @@
                 <?php if ($_SESSION['rol'] == 1) { ?>
                     <li>
                         <a href="<?php echo BASE_URL . 'inventarios'; ?>">
-                            <div class="parent-icon"><i class="fa-regular fa-chart-bar"></i>
+                            <div class="parent-icon"><i class="fa-solid fa-cart-flatbed"></i>
                             </div>
                             <div class="menu-title">Inventario</div>
                         </a>
@@ -257,12 +257,12 @@
                         <div class="position-relative">
                             <!-- <h6>Bienvenido: <?php echo TITLE; ?></h6> -->
 
-                            <!--<div class="d-grid gap-2 d-md-block">-->
+                            <!-- <div class="d-grid gap-2 d-md-block">-->
                             <!--    <a href="<?php echo BASE_URL . 'ventas'; ?>"> <button class="btn btn-primary" type="button">Nueva venta</button> </a>-->
                             <!--    <a href="<?php echo BASE_URL . 'cajas'; ?>"> <button class="btn btn-primary" type="button">Caja</button> </a>-->
-                            <!--</div>-->
+                            <!--</div> -->
 
-                            <h3><?php echo $data['title']; ?></h3>
+                            <h3 class="fw-bolder ms-3"><?php echo $data['title']; ?></h3>
 
                         </div>
                     </div>

@@ -40,6 +40,7 @@ class Productos extends Controller
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
+
     public function registrar()
     {
         if (isset($_POST['codigo']) && isset($_POST['nombre'])) {
@@ -58,7 +59,7 @@ class Productos extends Controller
             $destino = null;
             if (!empty($name)) {
                 $fecha = date('YmdHis');
-                $destino = 'assets/images/productos/' . $fecha . '.jpg';
+                $destino = './assets/images/productos/' . $fecha . '.jpg';
             } else if (!empty($fotoActual) && empty($name)) {
                 $destino = $fotoActual;
             }
@@ -85,7 +86,7 @@ class Productos extends Controller
                             $precio_venta,
                             $id_medida,
                             $id_categoria,
-                            $destino
+                            $destino,
                         );
                         if ($data > 0) {
                             if (!empty($name)) {

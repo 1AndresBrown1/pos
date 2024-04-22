@@ -20,7 +20,7 @@ $(function() {
 				left: 14,
 				blur: 4,
 				opacity: .12,
-				color: "#17a00e"
+				color: "#162b55"
 			},
 			sparkline: {
 				enabled: !0
@@ -28,7 +28,7 @@ $(function() {
 		},
 		markers: {
 			size: 0,
-			colors: ["#17a00e"],
+			colors: ["#162b55"],
 			strokeColors: "#fff",
 			strokeWidth: 2,
 			hover: {
@@ -50,7 +50,7 @@ $(function() {
 			width: 2.4,
 			curve: "smooth"
 		},
-		colors: ["#17a00e"],
+		colors: ["#162b55"],
 		xaxis: {
 			categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 		},
@@ -98,7 +98,7 @@ $(function() {
 				left: 14,
 				blur: 4,
 				opacity: .12,
-				color: "#f41127"
+				color: "#162b55"
 			},
 			sparkline: {
 				enabled: !0
@@ -106,7 +106,7 @@ $(function() {
 		},
 		markers: {
 			size: 0,
-			colors: ["#f41127"],
+			colors: ["#162b55"],
 			strokeColors: "#fff",
 			strokeWidth: 2,
 			hover: {
@@ -176,7 +176,7 @@ $(function() {
 				left: 14,
 				blur: 4,
 				opacity: .12,
-				color: "#0d6efd"
+				color: "#162b55"
 			},
 			sparkline: {
 				enabled: !0
@@ -596,7 +596,7 @@ $(function() {
 			width: 2.4,
 			curve: "smooth"
 		},
-		colors: ["#17a00e"],
+		colors: ["#162b55"],
 		xaxis: {
 			categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 		},

@@ -84,8 +84,8 @@ a {
 
 .btn-primary {
 	color: #fff;
-	background-color: #008cff;
-	border-color: #008cff
+	background-color: #0e245d;
+	border-color: #0e245d
 }
 .btn-primary:hover {
 	color: #fff;
@@ -351,11 +351,11 @@ a {
 
 
 .bg-primary {
-	background-color: #008cff !important;
+	background-color: #0e245d !important;
   }
 
 .bg-success {
-	background-color: #15ca20 !important;
+	background-color:#16a34a !important;
   }
 
 .bg-danger {

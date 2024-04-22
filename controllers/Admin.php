@@ -13,6 +13,11 @@ class Admin extends Controller
     public function __construct()
     {
         parent::__construct();
+        // Establecer el tiempo máximo de vida de la sesión en segundos (por ejemplo, 1 hora)
+        ini_set('session.gc_maxlifetime', 180);
+
+        // Establecer la duración del cookie de sesión en segundos (igual a 1 hora)
+        ini_set('session.cookie_lifetime', 180);
         session_start();
         if (empty($_SESSION['id_usuario'])) {
             header('Location: ' . BASE_URL);
@@ -240,7 +245,7 @@ class Admin extends Controller
     public function stockMinimoExcel()
     {
         $spreadsheet = new Spreadsheet();
-        
+
         $spreadsheet->getProperties()
             ->setCreator($_SESSION['nombre_usuario'])
             ->setTitle("Productos con Stock Mínimo");
@@ -313,7 +318,7 @@ class Admin extends Controller
     public function recientesExcel()
     {
         $spreadsheet = new Spreadsheet();
-        
+
         $spreadsheet->getProperties()
             ->setCreator($_SESSION['nombre_usuario'])
             ->setTitle("Productos Recientes");
@@ -390,12 +395,11 @@ class Admin extends Controller
         $data = $this->model->limpiraDatos();
         if (empty($data)) {
             $res = array('msg' => 'DATOS LIMPIADO POR COMPLETO', 'type' => 'success');
-        }else{
+        } else {
             $res = array('msg' => 'ERROR AL ELIMINAR DATOS', 'type' => 'error');
         }
         echo json_encode($res);
         die();
-        
     }
 
     public function permisos()

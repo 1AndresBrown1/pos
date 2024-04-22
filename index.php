@@ -1,4 +1,7 @@
 <?php
+// Configuración de la sesión para evitar cierre por inactividad
+
+
 date_default_timezone_set('America/Bogota');
 require_once 'config/Config.php';
 require_once 'config/Helpers.php';

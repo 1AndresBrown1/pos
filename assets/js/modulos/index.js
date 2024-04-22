@@ -25,12 +25,12 @@ function comparacion() {
       var ctx = document.getElementById("comparacion").getContext('2d');
 
       var gradientStroke1 = ctx.createLinearGradient(0, 0, 0, 300);
-      gradientStroke1.addColorStop(0, '#6078ea');
-      gradientStroke1.addColorStop(1, '#17c5ea');
+      gradientStroke1.addColorStop(0, '#1c458c');
+      gradientStroke1.addColorStop(1, '#1c458c');
 
       var gradientStroke2 = ctx.createLinearGradient(0, 0, 0, 300);
-      gradientStroke2.addColorStop(0, '#ff8359');
-      gradientStroke2.addColorStop(1, '#ffdf40');
+      gradientStroke2.addColorStop(0, '#91d1ff');
+      gradientStroke2.addColorStop(1, '#91d1ff');
 
       myChart = new Chart(ctx, {
         type: 'bar',
@@ -189,8 +189,8 @@ function reporteGastos() {
       var ctx = document.getElementById('gastos').getContext('2d');
 
       var gradientStroke1 = ctx.createLinearGradient(0, 0, 0, 300);
-      gradientStroke1.addColorStop(0, '#008cff');
-      gradientStroke1.addColorStop(1, 'rgba(22, 195, 233, 0.1)');
+      gradientStroke1.addColorStop(0, '#1c458c');
+      gradientStroke1.addColorStop(1, '#1c458c');
 
       myChartGasto = new Chart(ctx, {
         type: 'line',
