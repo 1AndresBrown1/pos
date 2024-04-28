@@ -31,7 +31,6 @@
 </div>
 
 
-
 <br>
 <div style="padding: 12px;">
 
@@ -100,7 +99,7 @@
         </div>
     </div>
 
-   
+
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2 d-flex ms-2 me-2 align-items-center">
         <div class="col-8">
             <div class="card custom-card-table radius-10">
@@ -169,9 +168,6 @@
         </div>
     </div>
 
-
-
-
     <div class="card radius-10">
         <div class="card-body">
             <div class="d-flex align-items-center">
@@ -230,10 +226,6 @@
             </div>
         </div>
     </div>
-
-
-
-
 
 
     <?php include_once 'views/templates/footer.php'; ?>
