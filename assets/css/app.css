@@ -9,6 +9,7 @@ File: app.css
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 
+
 body {
 	font-size: 14px;
 	color: #4c5258;
@@ -18,7 +19,7 @@ body {
 }
 
 a {
-	text-decoration: none
+	text-decoration: none;
 }
 
 .wrapper {

@@ -2,8 +2,15 @@
 
 <div class="card custom-card-table">
     <div class="card-body ">
-        <div class="d-flex align-items-center">
-            <div></div>
+        <div class="d-flex align-items-center mb-4">
+            <div>
+               
+
+
+
+
+
+            </div>
             <div class="dropdown ms-auto">
                 <a class="dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown"><i class='bx bx-dots-horizontal-rounded font-22 text-option'></i>
                 </a>
@@ -13,6 +20,7 @@
                 </ul>
             </div>
         </div>
+
         <nav>
             <div class="nav nav-pills" id="nav-tab" role="tablist">
                 <button class="nav-link active" id="nav-clientes-tab" data-bs-toggle="tab" data-bs-target="#nav-clientes" type="button" role="tab" aria-controls="nav-clientes" aria-selected="true">Clientes</button>
@@ -106,5 +114,7 @@
         </div>
     </div>
 </div>
+
+
 
 <?php include_once 'views/templates/footer.php'; ?>
