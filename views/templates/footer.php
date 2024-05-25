@@ -172,164 +172,132 @@
                 <h2 class="modal-title" id="chatModalLabel">Mi asistente</h2>
             </div>
             <div class="modal-body">
-                <?php
-      
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "sistema";
-
-
-                $conn = new mysqli($servername, $username, $password, $dbname);
-
-           
-                if ($conn->connect_error) {
-                    die("Conexión fallida: " . $conn->connect_error);
-                }
-
-           
-                $sql_stock_alto_count = "SELECT COUNT(*) AS count FROM productos WHERE cantidad > 90";
-                $result_stock_alto_count = $conn->query($sql_stock_alto_count);
-                $row_stock_alto_count = $result_stock_alto_count->fetch_assoc();
-                $count_stock_alto = $row_stock_alto_count["count"];
-                $sql_stock_bajo_count = "SELECT COUNT(*) AS count FROM productos WHERE cantidad < 5";
-                $result_stock_bajo_count = $conn->query($sql_stock_bajo_count);
-                $row_stock_bajo_count = $result_stock_bajo_count->fetch_assoc();
-                $count_stock_bajo = $row_stock_bajo_count["count"];
-
                
-                if ($count_stock_alto > 0) {
-             
-                    $api_chatgpt = 'sk-proj-hXr66e9ndZldWGo7vcgrT3BlbkFJ9yNAoiG5JQHRxxxRhhIb';
 
-                    $ch = curl_init();
-                    curl_setopt($ch, CURLOPT_URL, 'https://api.openai.com/v1/chat/completions');
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-                    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                        'Content-Type: application/json',
-                        'Authorization: Bearer ' . $api_chatgpt,
-                    ]);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, "{\n     \"model\": \"gpt-3.5-turbo\",\n     \"messages\": [{\"role\": \"user\", \"content\": \"Estos productos no se están vendiendo en mi fruver Imagina que eres el propietario de una fruver de barrio en colomnia  y quieres aumentar tus ventas.creame una  en menos de 400 caracteres estrategia personalizada, para vender la  amplia gama de productos y ayudame con ideas para  las ofertas especiales, para atraer a más clientes locales y aumentar el volumen de ventas en tu tienda\"}],\n     \"temperature\": 0.7\n   }");
-                    $response = curl_exec($ch);
-                    curl_close($ch);
-
-                    $respuesta_stock_alto = json_decode($response);
-
-                  
-                    if (isset($respuesta_stock_alto->choices[0]->message->content)) {
-                        $mensaje_respuesta_stock_alto = $respuesta_stock_alto->choices[0]->message->content;
-
-                 
-                        echo '<div class="card" id="stock-alto-card">';
-                        echo '<div class="card-body">';
-                        echo '<h5 class="card-title">Resumen de Stock</h5>';
-                        echo '<p class="card-text">Productos con stock alto: <span class="badge bg-primary" id="stock-alto-count">' . $count_stock_alto . '</span></p>';
-                        echo '<p class="card-text">Mensaje para productos con stock alto:</p>';
-                        echo '<p class="card-text" id="mensaje-stock-alto">' . $mensaje_respuesta_stock_alto . '</p>'; 
-                        echo '</div>';
-                        echo '</div>';
-                    } else {
-                        echo '<div class="alert alert-warning" role="alert">';
-                        echo "No se pudo obtener la respuesta para los productos con stock alto.";
-                        echo '</div>';
-                    }
-                }
-
-       
-                if ($count_stock_bajo > 0) {
-
-                    $ch = curl_init();
-                    curl_setopt($ch, CURLOPT_URL, 'https://api.openai.com/v1/chat/completions');
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-                    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                        'Content-Type: application/json',
-                        'Authorization: Bearer ' . $api_chatgpt,
-                    ]);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, "{\n     \"model\": \"gpt-3.5-turbo\",\n     \"messages\": [{\"role\": \"user\", \"content\": \"Porque es importante tener en cuenta los productos con bajo stock en el inventario de mi drogeria dame un consejos, 400 caracteres\"}],\n     \"temperature\": 0.7\n   }");
-                    $response = curl_exec($ch);
-                    curl_close($ch);
-
-                    $respuesta_stock_bajo = json_decode($response);
-
-                   
-                    if (isset($respuesta_stock_bajo->choices[0]->message->content)) {
-                        $mensaje_respuesta_stock_bajo = $respuesta_stock_bajo->choices[0]->message->content;
-
-                        echo '<div class="card mt-3" id="stock-bajo-card">';
-                        echo '<div class="card-body">';
-                        echo '<h5 class="card-title">Resumen de Stock</h5>';
-                        echo '<p class="card-text">Productos con stock bajo: <span class="badge bg-warning" id="stock-bajo-count">' . $count_stock_bajo . '</span></p>';
-                        echo '<p class="card-text">Mensaje para productos con stock bajo:</p>';
-                        echo '<p class="card-text" id="mensaje-stock-bajo">' . $mensaje_respuesta_stock_bajo . '</p>'; 
-                        echo '</div>';
-                        echo '</div>';
-                    } else {
-                        echo '<div class="alert alert-warning mt-3" role="alert">';
-                        echo "No se pudo obtener la respuesta para los productos con stock bajo.";
-                        echo '</div>';
-                    }
-                }
-
-                $conn->close();
-                ?>
-
-                <script>
-                    setInterval(function() {
-                       
-                        var api_chatgpt = 'sk-proj-hXr66e9ndZldWGo7vcgrT3BlbkFJ9yNAoiG5JQHRxxxRhhIb';
-
-                    
-                        var ch1 = curl_init();
-                        curl_setopt(ch1, CURLOPT_URL, 'https://api.openai.com/v1/chat/completions');
-                        curl_setopt(ch1, CURLOPT_RETURNTRANSFER, true);
-                        curl_setopt(ch1, CURLOPT_CUSTOMREQUEST, 'POST');
-                        curl_setopt(ch1, CURLOPT_HTTPHEADER, [
-                            'Content-Type: application/json',
-                            'Authorization: Bearer ' + api_chatgpt,
-                        ]);
-                        curl_setopt(ch1, CURLOPT_POSTFIELDS, JSON.stringify({
-                            "model": "gpt-3.5-turbo",   
-                            "messages": [{
-                                "role": "user",
-                                "content": "Estos productos no se están vendiendo en mi fruver Imagina que eres el propietario de una fruver de barrio en colomnia  y quieres aumentar tus ventas.creame una  en menos de 400 caracteres estrategia personalizada, para vender la  amplia gama de productos y ayudame con ideas para  las ofertas especiales, para atraer a más clientes locales y aumentar el volumen de ventas en tu tienda"
-                            }],
-                            "temperature": 0.7
-                        }));
-                        var response1 = curl_exec(ch1);
-                        curl_close(ch1);
-                        var respuesta_stock_alto = JSON.parse(response1);
-
-                        if (respuesta_stock_alto && respuesta_stock_alto.choices && respuesta_stock_alto.choices.length > 0 && respuesta_stock_alto.choices[0].message && respuesta_stock_alto.choices[0].message.content) {
-                            document.getElementById("mensaje-stock-alto").innerHTML = respuesta_stock_alto.choices[0].message.content;
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>AI Chat Assistant</title>
+                    <style>
+                        body {
+                            display: flex;
+                            flex-direction: column;
+                            height: 100vh;
                         }
 
-                        var ch2 = curl_init();
-                        curl_setopt(ch2, CURLOPT_URL, 'https://api.openai.com/v1/chat/completions');
-                        curl_setopt(ch2, CURLOPT_RETURNTRANSFER, true);
-                        curl_setopt(ch2, CURLOPT_CUSTOMREQUEST, 'POST');
-                        curl_setopt(ch2, CURLOPT_HTTPHEADER, [
-                            'Content-Type: application/json',
-                            'Authorization: Bearer ' + api_chatgpt,
-                        ]);
-                        curl_setopt(ch2, CURLOPT_POSTFIELDS, JSON.stringify({
-                            "model": "gpt-3.5-turbo",
-                            "messages": [{
-                                "role": "user",
-                                "content": "Porque es importante tener en cuenta los productos con bajo stock en el inventario de mi fruver dame un consejos, 400 caracteres"
-                            }],
-                            "temperature": 0.7
-                        }));
-                        var response2 = curl_exec(ch2);
-                        curl_close(ch2);
-                        var respuesta_stock_bajo = JSON.parse(response2);
-
-                        if (respuesta_stock_bajo && respuesta_stock_bajo.choices && respuesta_stock_bajo.choices.length > 0 && respuesta_stock_bajo.choices[0].message && respuesta_stock_bajo.choices[0].message.content) {
-                            document.getElementById("mensaje-stock-bajo").innerHTML = respuesta_stock_bajo.choices[0].message.content;
+                        .chat-container {
+                            flex: 1;
+                            display: flex;
+                            flex-direction: column;
+                            overflow-y: auto;
+                            padding: 10px;
+                            border: 1px solid #ddd;
+                            margin-bottom: 20px;
                         }
-                    }, 10000); 
-                </script>
+
+                        .message {
+                            padding: 10px;
+                            margin: 5px 0;
+                            border-radius: 5px;
+                        }
+
+                        .message.user {
+                            background-color: #007bff;
+                            color: white;
+                            align-self: flex-end;
+                        }
+
+                        .message.ai {
+                            background-color: #f1f1f1;
+                            align-self: flex-start;
+                        }
+
+                        .input-group {
+                            margin-top: auto;
+                        }
+
+                        .predefined-buttons {
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: space-around;
+                            margin-bottom: 10px;
+                        }
+
+                        .predefined-buttons button {
+                            margin: 5px;
+                        }
+                    </style>
+                </head>
+
+                <body>
+                    <div class="container">
+                        <div class="chat-container" id="chat-container">
+                            <!-- Messages will be appended here -->
+                        </div>
+                        <div class="predefined-buttons">
+                            <button class="btn btn-info" data-question="stock bajo en la semana">Stock bajo en la semana</button>
+                            <button class="btn btn-info" data-question="stock alto en el mes">Stock alto en el mes</button>
+                            <button class="btn btn-info" data-question="producto con más ventas en el año">Producto con más ventas en el año</button>
+                            <button class="btn btn-info" data-question="producto con más ventas">Producto con más ventas</button>
+                            <button class="btn btn-info" data-question="consejo del día">Consejo del día</button>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="user-input" placeholder="Type a message">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" id="send-button">Send</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        $(document).ready(function() {
+                            $('.predefined-buttons button').on('click', function() {
+                                const question = $(this).data('question');
+                                appendMessage('user', question);
+                                sendToAPI(question);
+                            });
+
+                            $('#send-button').on('click', function() {
+                                const userInput = $('#user-input').val();
+                                if (userInput.trim() !== '') {
+                                    appendMessage('user', userInput);
+                                    $('#user-input').val('');
+                                    sendToAPI(userInput);
+                                }
+                            });
+
+                            $('#user-input').on('keypress', function(e) {
+                                if (e.which === 13) {
+                                    $('#send-button').click();
+                                }
+                            });
+
+                            function appendMessage(sender, text) {
+                                const messageElement = $('<div>').addClass('message').addClass(sender).text(text);
+                                $('#chat-container').append(messageElement);
+                                $('#chat-container').scrollTop($('#chat-container')[0].scrollHeight);
+                            }
+
+                            function sendToAPI(userInput) {
+                                $.ajax({
+                                    url: 'chat.php',
+                                    method: 'POST',
+                                    data: {
+                                        message: userInput
+                                    },
+                                    success: function(response) {
+                                        appendMessage('ai', response);
+                                    },
+                                    error: function() {
+                                        appendMessage('ai', 'Error communicating with the server.');
+                                    }
+                                });
+                            }
+                        });
+                    </script>
+            
+
+
             </div>
         </div>
     </div>
