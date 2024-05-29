@@ -191,7 +191,6 @@
                             flex-direction: column;
                             overflow-y: auto;
                             padding: 10px;
-                            border: 1px solid #ddd;
                             margin-bottom: 20px;
                         }
 

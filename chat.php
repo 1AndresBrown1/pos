@@ -82,17 +82,19 @@ function sendMessageToOpenAI($userMessage) {
     }
 }
 
-function generateAdvice($message) {
+function generateAdvice($context, $message) {
     $apiKey = 'sk-proj-hXr66e9ndZldWGo7vcgrT3BlbkFJ9yNAoiG5JQHRxxxRhhIb';
     $ch = curl_init();
+
+    $prompt = "$context: $message Proporciona un consejo corto y útil para un fruver en Colombia.";
 
     curl_setopt($ch, CURLOPT_URL, 'https://api.openai.com/v1/chat/completions');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
         'model' => 'gpt-3.5-turbo',
-        'messages' => [['role' => 'user', 'content' => $message]],
-        'max_tokens' => 150,
+        'messages' => [['role' => 'user', 'content' => $prompt]],
+        'max_tokens' => 100, // Reducir los tokens para consejos más cortos
         'temperature' => 0.7,
     ]));
 
@@ -124,8 +126,8 @@ function generateAdvice($message) {
 }
 
 function generateDailyAdvice() {
-    $message = "Genera un consejo útil y breve para un negocio fruver en Colombia.";
-    $advice = generateAdvice($message);
+    $message = "Genera un consejo corto y útil para un negocio fruver en Colombia.";
+    $advice = generateAdvice('Consejo del día', $message);
     echo $advice;
 }
 
@@ -167,8 +169,8 @@ function checkStock($period, $type) {
     if ($result->num_rows > 0) {
         // Obtener la cantidad de productos con el stock especificado
         $row = $result->fetch_assoc();
-        $message = "Hay " . $row['stock_count'] . " productos con un stock " . ($type === 'low' ? "menor a 5" : "mayor a 100") . " en el período seleccionado. Proporciona un consejo para un fruver en Colombia.";
-        $advice = generateAdvice($message);
+        $message = "Hay " . $row['stock_count'] . " productos con un stock " . ($type === 'low' ? "menor a 5" : "mayor a 100") . " en el período seleccionado.";
+        $advice = generateAdvice($type === 'low' ? 'Stock bajo' : 'Stock alto', $message);
         echo $message . " " . $advice;
     } else {
         echo "No hay productos con un stock " . ($type === 'low' ? "menor a 5" : "mayor a 100") . " en el período seleccionado.";
@@ -211,8 +213,8 @@ function getTopSellingProduct($period) {
     if ($result->num_rows > 0) {
         // Obtener el producto con más ventas
         $row = $result->fetch_assoc();
-        $message = "El producto con más ventas " . ($period === 'day' ? "hoy" : ($period === 'month' ? "este mes" : ($period === 'year' ? "este año" : "en general"))) . " es " . $row['codigo'] . " - " . $row['descripcion'] . " con un total de " . $row['total_vendido'] . " unidades vendidas. Proporciona un consejo para un fruver en Colombia.";
-        $advice = generateAdvice($message);
+        $message = "El producto con más ventas " . ($period === 'day' ? "hoy" : ($period === 'month' ? "este mes" : ($period === 'year' ? "este año" : "en general"))) . " es " . $row['codigo'] . " - " . $row['descripcion'] . " con un total de " . $row['total_vendido'] . " unidades vendidas.";
+        $advice = generateAdvice('Producto más vendido', $message);
         echo $message . " " . $advice;
     } else {
         echo "No se encontraron datos de ventas " . ($period === 'day' ? "hoy" : ($period === 'month' ? "este mes" : ($period === 'year' ? "este año" : "en general"))) . ".";
