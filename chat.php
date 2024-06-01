@@ -86,7 +86,7 @@ function generateAdvice($context, $message) {
     $apiKey = 'sk-proj-hXr66e9ndZldWGo7vcgrT3BlbkFJ9yNAoiG5JQHRxxxRhhIb';
     $ch = curl_init();
 
-    $prompt = "$context: $message Proporciona un consejo corto y útil para un fruver en Colombia.";
+    $prompt = "$context: $message Proporciona un consejo práctico y breve que pueda ayudar a mejorar la gestión o aumentar las ventas en un fruver. El c onsejo debe ser específico para el contexto colombiano y relevante para los dueños de negocios de frutas y verduras.";
 
     curl_setopt($ch, CURLOPT_URL, 'https://api.openai.com/v1/chat/completions');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
