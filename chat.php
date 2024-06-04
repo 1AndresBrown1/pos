@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 function sendMessageToOpenAI($userMessage) {
-    $apiKey = 'sk-proj-hXr66e9ndZldWGo7vcgrT3BlbkFJ9yNAoiG5JQHRxxxRhhIb';
+    $apiKey = 'APPIKEY';
     $ch = curl_init();
 
     curl_setopt($ch, CURLOPT_URL, 'https://api.openai.com/v1/chat/completions');
